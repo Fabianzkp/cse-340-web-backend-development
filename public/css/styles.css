@@ -4,3 +4,236 @@
 *:after {
   box-sizing: border-box;
 }
+
+#top-header {
+  display: flex;
+  justify-content: space-between; /* Distribute items */
+  align-items: center; /* Center items vertically */
+  padding: 2rem; 
+  background-color: white; 
+  color: black; 
+}
+
+#top-header .siteName a {
+  font-size: 2rem; 
+  font-weight: bold;
+  text-decoration: none; 
+  color:black; 
+}
+
+#tools a {
+  font-size: 14px; 
+  color: black;
+  text-decoration: none; 
+}
+
+
+ul {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0;
+  margin: 0;
+}
+
+nav {
+  background-color: rgba(19, 121, 19, 0.9); 
+}
+
+nav ul {
+  display: flex; /* Use flexbox for horizontal alignment */
+  justify-content: space-evenly; 
+  align-items: center; 
+}
+
+nav ul li {
+  margin: 0 4px; /* Space between items */
+  padding: 1rem 0;
+  font-size: 1rem;
+  color: white;
+}
+
+#hero img {
+  width: 100%;        /* Makes the image responsive, 100% of the container's width */
+  height: auto;       /* Maintains the aspect ratio of the image */
+  max-width: 100%;    /* Ensures the image doesn't stretch beyond its natural size */
+}
+
+#hero {
+  position: relative; /* Ensure #hero is the reference for #dice */
+}
+
+#dice {
+  position: absolute; /* Position relative to the #hero section */
+  top: 48%; 
+  left: 11%; 
+   
+  z-index: 2; /* Ensure it appears above other elements */
+  color: white;
+}
+
+.dice-content{
+  background-color: rgba(10, 14, 10, 0.6);;
+  width: 10rem; /* Set a fixed width */
+  height: 9rem; /* Reduced height */
+}
+
+.cta {
+  background-color: rgba(229, 215, 136, 0.9);
+  text-decoration: none;
+  color: rgba(19, 121, 19, 0.9);
+  padding: 7px;
+  font-weight: bold;
+  margin-left: 2rem;
+}
+
+.dice-content ul{
+  margin-bottom: 1rem;
+}
+.dice-content ul li{
+  font-weight: bold;
+  color: white;
+  padding-left: 1rem;
+}
+
+.dice-content h3{
+  padding-left: 1rem;
+}
+
+#categories {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.category-grid {
+  margin-bottom: 2rem;
+}
+
+.review-list {
+  list-style-type: disc; /* Ensures bullet points */
+  padding-left: 20px; /* Indentation for the bullets */
+  font-size: 1.1rem; 
+  text-align: left; 
+  margin: 0 auto; /* Centers the list */
+}
+
+.review-list li {
+  margin-bottom: 0.75rem; /* Adds spacing between items */
+}
+
+#delorean-upgrades {
+  padding: 2rem;  /* Add padding around the section */
+  text-align: center;  /* This is to Center the text */
+}
+
+#delorean-upgrades h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.upgrades-grid {
+  display: grid;  
+  grid-template-columns: repeat(2, 1fr);  
+  gap: 1.5rem;  
+}
+
+.upgrade-item {
+  background-color: skyblue;  
+  padding: 1rem;  
+  border-radius: 8px;  
+  
+}
+
+.upgrade-item img {
+  width: 100%;  /* Make images responsive to their container */
+  height: auto;
+  border-radius: 4px;  /* Rounded corners on the image */
+}
+
+.upgrade-item p {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #333;  
+  text-decoration: underline;
+}
+
+footer {
+  color: blue;
+}
+
+
+@media (min-width: 430px) {
+  /* Ensure body takes the full height and centers everything */
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center;     /* Centers content vertically */
+    min-height: 100vh;       /* Ensures the body takes full height */
+  }
+
+  /* Center the wrapper and restrict the width */
+  #wrapper {
+    width: 100%;             /* Allow the wrapper to take full width */
+    max-width: 1200px;       /* Restrict maximum width */
+    margin: 0 auto;          /* Centers the wrapper horizontally */
+  }
+
+  /* Additional styles to ensure everything within the wrapper stays centered */
+  main {
+    padding: 2rem; /* Adds space around the main content */
+  }
+
+  /* Style for the hero image to be responsive */
+  #hero img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+  }
+
+  /* Optionally, use a max width on category grids or any specific elements */
+  .category-grid {
+    max-width: 1000px;
+    margin: 0 auto; /* Centers the grid */
+  }
+
+  /* For the reviews and upgrades section, maintain the grid but ensure content is centered */
+  .reviews-upgrades-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+    align-items: start;
+    margin-top: 2rem;
+  }
+
+  #delorean-upgrades {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  #categories {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  #delorean-upgrades .upgrades-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  #categories h2, #delorean-upgrades h2 {
+    text-align: left;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .upgrade-item {
+    padding: 1rem;
+    background-color: skyblue;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
