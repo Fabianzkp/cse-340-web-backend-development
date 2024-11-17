@@ -173,7 +173,7 @@ footer {
   }
 
   /* Center the wrapper and restrict the width */
-  #wrapper {
+  #wrap {
     width: 100%;             /* Allow the wrapper to take full width */
     max-width: 1200px;       /* Restrict maximum width */
     margin: 0 auto;          /* Centers the wrapper horizontally */
