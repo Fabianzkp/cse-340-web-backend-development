@@ -1,5 +1,4 @@
 /******* Change Box Model ***************/
-
 *,
 *:before,
 *:after {
@@ -8,10 +7,6 @@
 
 body {
   font-family: 'Oswald', sans-serif;
-}
-
-nav {
-  font-family: 'Roboto', sans-serif;
 }
 
 #top-header {
@@ -44,7 +39,9 @@ ul {
 }
 
 nav {
+  font-family: 'Kanit', sans-serif;;
   background-color: rgba(19, 121, 19, 0.9); 
+  font-weight: bold;
 }
 
 nav ul {
@@ -58,7 +55,6 @@ nav ul li {
   padding: 1rem 0;
   font-size: 1rem;
   color: white;
-  font-weight: bold;
 }
 
 #hero img {
@@ -68,14 +64,30 @@ nav ul li {
 }
 
 #hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
 }
 
-#dice {
+.hero-container {
+  display: flex;
+  flex-direction: column; /* Stack content */
+  align-items: flex-start; /* Align to the left */
   position: absolute;
+  width: 100%; /* Match hero width */
+}
+
+#dice {
+  margin: 1rem; /* Add spacing for clarity */
   color: white;
-  z-index: 1;
-  /* margin-top: -25rem; */
+}
+
+
+.dice-content{
+  background-color: rgba(10, 14, 10, 0.6);;
+  width: 10rem; /* Set a fixed width */
+  height: 9rem; /* Reduced height */
 }
 
 .cta {
@@ -85,12 +97,6 @@ nav ul li {
   padding: 7px;
   font-weight: bold;
   margin-left: 2rem;
-}
-
-.dice-content{
-  background-color: rgba(10, 14, 10, 0.6);;
-  width: 10rem; 
-  height: 9rem; 
 }
 
 .dice-content ul{
@@ -170,7 +176,7 @@ footer {
 }
 
 
-@media (min-width: 430px) {
+@media (min-width: 750px) {
   /* Ensure body takes the full height and centers everything */
   body {
     margin: 0;
@@ -249,7 +255,4 @@ footer {
     max-width: 90%;
     margin-left: 4rem;
   }
-
-  
- 
 }
