@@ -1,8 +1,17 @@
 /******* Change Box Model ***************/
+
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+body {
+  font-family: 'Oswald', sans-serif;
+}
+
+nav {
+  font-family: 'Roboto', sans-serif;
 }
 
 #top-header {
@@ -49,6 +58,7 @@ nav ul li {
   padding: 1rem 0;
   font-size: 1rem;
   color: white;
+  font-weight: bold;
 }
 
 #hero img {
@@ -58,22 +68,14 @@ nav ul li {
 }
 
 #hero {
-  position: relative; /* Ensure #hero is the reference for #dice */
+  position: relative;
 }
 
 #dice {
-  position: absolute; /* Position relative to the #hero section */
-  top: 48%; 
-  left: 11%; 
-   
-  z-index: 2; /* Ensure it appears above other elements */
+  position: absolute;
   color: white;
-}
-
-.dice-content{
-  background-color: rgba(10, 14, 10, 0.6);;
-  width: 10rem; /* Set a fixed width */
-  height: 9rem; /* Reduced height */
+  z-index: 1;
+  /* margin-top: -25rem; */
 }
 
 .cta {
@@ -83,6 +85,12 @@ nav ul li {
   padding: 7px;
   font-weight: bold;
   margin-left: 2rem;
+}
+
+.dice-content{
+  background-color: rgba(10, 14, 10, 0.6);;
+  width: 10rem; 
+  height: 9rem; 
 }
 
 .dice-content ul{
@@ -242,5 +250,6 @@ footer {
     margin-left: 4rem;
   }
 
+  
  
 }
