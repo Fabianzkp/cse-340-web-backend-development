@@ -75,11 +75,11 @@ nav ul li {
   flex-direction: column; /* Stack content */
   align-items: flex-start; /* Align to the left */
   position: absolute;
-  width: 100%; /* Match hero width */
+  width: 100%; 
 }
 
 #dice {
-  margin: 1rem; /* Add spacing for clarity */
+  margin: 1rem; 
   color: white;
 }
 
