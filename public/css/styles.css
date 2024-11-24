@@ -31,6 +31,11 @@ body {
   text-decoration: none; 
 }
 
+nav {
+  font-family: 'Kanit', sans-serif;;
+  background-color: rgba(19, 121, 19, 0.9); 
+  font-weight: bold;
+}
 
 ul {
   list-style-type: none; /* Remove bullet points */
@@ -38,23 +43,27 @@ ul {
   margin: 0;
 }
 
-nav {
-  font-family: 'Kanit', sans-serif;;
-  background-color: rgba(19, 121, 19, 0.9); 
-  font-weight: bold;
+nav a:hover {
+  color: rgba(19, 121, 19, 0.9);
+  background-color: rgba(229, 215, 136, 0.9);
 }
-
 nav ul {
   display: flex; /* Use flexbox for horizontal alignment */
   justify-content: space-evenly; 
-  align-items: center; 
+  align-items: center;
 }
 
 nav ul li {
-  margin: 0 4px; /* Space between items */
-  padding: 1rem 0;
-  font-size: 1rem;
+  flex: 1;
+  text-align: center;
+}
+
+nav ul li a {
+  display: block; /* To make the link fill the container */
+  text-decoration: none; 
   color: white;
+  font-size: 1.2rem;
+  padding: 1rem; 
 }
 
 #hero img {
@@ -190,13 +199,14 @@ footer {
   /* Center the wrapper and restrict the width */
   #wrap {
     width: 100%;             /* Allow the wrapper to take full width */
-    max-width: 1200px;       /* Restrict maximum width */
+    max-width: 700px;       /* Restrict maximum width */
     margin: 0 auto;          /* Centers the wrapper horizontally */
   }
 
   /* Additional styles to ensure everything within the wrapper stays centered */
   main {
     padding: 2rem; /* Adds space around the main content */
+    margin-left: 3rem;
   }
 
   /* Style for the hero image to be responsive */
@@ -207,13 +217,13 @@ footer {
     object-fit: cover;
   }
 
-  /* Optionally, use a max width on category grids or any specific elements */
+  /*max width on category grids or any specific elements */
   .category-grid {
     max-width: 1000px;
     margin: 0 auto; /* Centers the grid */
   }
 
-  /* For the reviews and upgrades section, maintain the grid but ensure content is centered */
+  /* For the reviews and upgrades section */
   .reviews-upgrades-wrapper {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -251,8 +261,68 @@ footer {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
 
-  #wrap, #top-header, nav{
+  #wrapper, #top-header, nav{
     max-width: 90%;
     margin-left: 4rem;
+  }
+
+  #inv-display {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* Defines 3 equal-width columns */
+    gap: 2rem; 
+    list-style-type: none; 
+    padding: 0;
+    margin: 0;
+  }
+  
+  #inv-display li {
+    display: flex;  /* Enables Flexbox */
+    flex-direction: column;  /* Stacks the image and text vertically */
+    justify-content: center;  /* Centers the content vertically */
+    align-items: center;  /* Centers the content horizontally */
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  
+  #inv-display li:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+  }
+  
+  #inv-display li img {
+    max-width: 100%;  /* Makes the image responsive */
+    height: auto;     /* Maintain aspect ratio */
+    object-fit: cover; /* Ensures the image fills its container without stretching */
+    display: block;  /* Prevents extra space below the image */
+    margin-bottom: 8px; /* Adds a little space between the image and text */
+  }
+  
+  
+  .namePrice {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .namePrice h2 {
+    font-size: 1.2rem;
+    margin: 8px 0;
+  }
+  
+  .namePrice span {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  #inv-display li hr {
+    width: 90%;  /* Adjust the width of the line */
+    margin: 8px auto;  /* Adds space above and below the line and center it */
+    border: 1.2px solid black;  
+  }
+  
+  #inv-display a {
+    color: rgba(19, 121, 19, 0.9);
   }
 }
