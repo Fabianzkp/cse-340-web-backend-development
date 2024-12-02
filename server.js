@@ -12,7 +12,8 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
-const utilities = require("./utilities");
+const utilities = require("./utilities")
+const errorRoute = require("./routes/errorRoute")
 
 
 /* ***********************
@@ -28,6 +29,7 @@ app.set("layout", "./layouts/layout") // not at views root
 // Use the static router for static file handling
 app.use(static)
 app.use("/inv", inventoryRoute)
+app.use("/inv/error", errorRoute)
 
 // Index route for homepage
 app.get("/", utilities.handleErrors(baseController.buildHome))

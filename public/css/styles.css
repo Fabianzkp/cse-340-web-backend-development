@@ -69,17 +69,18 @@ nav ul li a {
   
 }
 
-#hero img {
-  width: 100%;        /* Makes the image responsive, 100% of the container's width */
-  height: auto;       /* Maintains the aspect ratio of the image */
-  max-width: 100%;    /* Ensures the image doesn't stretch beyond its natural size */
-}
-
 #hero {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center;  /* Centers the image horizontally */
+  align-items: center;      /* Centers the image vertically */
   position: relative;
+}
+
+#hero img {
+  width: 100%;        /* Ensures the image fills the container's width */
+  height: auto;       /* Keeps the aspect ratio */
+  max-width: 100%;    /* Ensures the image doesn't stretch beyond its natural size */
+  object-fit: cover;  /* Ensures the image covers the container without distortion */
 }
 
 .hero-container {
@@ -182,24 +183,34 @@ nav ul li a {
   text-decoration: underline;
 }
 
+#vehicle-display img {
+  width: 100%;
+  max-width: 300px; 
+  height: auto;
+  border-radius: 8px; /* for rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: for shadow effect */
+  margin: 0 auto; /* Center  */
+  }
+
 footer {
   color: rgba(19, 121, 19, 0.9);
-  padding-left: 4rem;
+  
 }
 
 
 @media (min-width: 750px) {
   /* Ensure body takes the full height and centers everything */
   body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center; /* Centers content horizontally */
-    align-items: center;     /* Centers content vertically */
-    min-height: 100vh;       /* Ensures the body takes full height */
-  }
-
-  /* Center the wrapper and restrict the width */
+    
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    main {
+      flex: 1;
+    }
+    
   #wrap {
     width: 100%;             /* Allow the wrapper to take full width */
     max-width: 700px;       /* Restrict maximum width */
@@ -328,4 +339,25 @@ footer {
   #inv-display a {
     color: rgba(19, 121, 19, 0.9);
   }
+
+  #vehicle-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem; 
+    list-style-type: none; 
+    padding: 0;
+    margin: 0;
+  }
+
+  #vehicle-display img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  }
+
+  footer {
+    margin-left: 4rem;
+    margin-bottom: 2rem;
+  }
 }
+
