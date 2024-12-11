@@ -1,0 +1,23 @@
+  <!-- The Content Heading -->
+  <% if (title) { %>
+    <h1><%= title %></h1>
+  <% } %>
+
+  <!-- Flash Message -->
+  <%- messages() %>
+
+  <!-- Login Form -->
+  <form action="/account/login" method="POST" id="form">
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="on"><br>
+    
+    <div class="password-field">
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="on"><br>
+    </div>
+    <button type="submit" id="login">Login</button>
+  </form>
+
+  <!-- Registration Link -->
+  <p>No account? <a href="/account/register" id="sign-up">Sign-up.</a></p>
+

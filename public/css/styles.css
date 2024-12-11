@@ -192,8 +192,35 @@ nav ul li a {
   margin: 0 auto; /* Center  */
   }
 
+  .notice {
+    color: rgba(205, 18, 65, 0.9);
+    list-style-type: disc;
+    font-style: italic;
+    margin-left: 1.2rem;
+  }
+
+  #email, #password{
+    color: black;
+    background-color: white;
+    width: 250px;
+    height: 40px;
+  }
+
+  .password-field{
+    margin: .5rem 0;
+  }
+
+  #form {
+    color: white;
+    width: 320px;
+    background-color: rgba(19, 121, 19, 0.9);
+    padding: 1.5rem 1.5rem;
+    border: 4px solid gray;
+    margin-top: 1.5rem;
+  }
+
 footer {
-  color: rgba(19, 121, 19, 0.9);
+  color: rgba(41, 19, 121, 0.9);
   
 }
 
