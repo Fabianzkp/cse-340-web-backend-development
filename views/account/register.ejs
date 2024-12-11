@@ -1,0 +1,31 @@
+  <!-- The Content Heading -->
+  <% if (title) { %>
+    <h1><%= title %></h1>
+  <% } %>
+
+  <!-- Flash Message -->
+  <%- messages() %>
+
+    <!-- Registration Form -->
+<form action="/account/register" method="POST" class="form">
+    <div class="field">
+        <label for="account_firstname">First Name:</label><br>
+        <input type="text" id="account_firstname" name="account_firstname" required autocomplete="on">
+    </div>  
+    <div class="field">
+        <label for="account_lastname">Last Name:</label><br>
+        <input type="text" id="account_lastname" name="account_lastname" required autocomplete="on">
+    </div>
+    <div class="field">
+        <label for="account_email">Email:</label><br>
+        <input type="email" id="account_email" name="account_email" required autocomplete="on">
+    </div>
+    <div class="field">
+        <label for="account_password" class="register-field">Password:</label><br>
+        <input type="password" id="account_password" name="account_password" required minlength="12" pattern="(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}"
+        title="Password must be at least 12 characters long, contain at least one uppercase letter, one number, and one special character.">
+        <span id="passwordButton">Show Password</span>
+    </div>
+    <button type="submit" class="register-field">Register</button>
+</form>
+<script src="/js/register.js" defer></script>

@@ -199,18 +199,20 @@ nav ul li a {
     margin-left: 1.2rem;
   }
 
-  #email, #password{
+  #email, #password, #account_firstname,
+  #account_lastname, #account_email,
+  #account_password {
     color: black;
     background-color: white;
     width: 250px;
     height: 40px;
   }
 
-  .password-field{
+  .password-field, .field{
     margin: .5rem 0;
   }
 
-  #form {
+  .form {
     color: white;
     width: 320px;
     background-color: rgba(19, 121, 19, 0.9);
