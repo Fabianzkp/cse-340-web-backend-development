@@ -190,27 +190,27 @@ nav ul li a {
   border-radius: 8px; /* for rounded corners */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: for shadow effect */
   margin: 0 auto; /* Center  */
-  }
+}
 
-  .notice {
-    color: rgba(205, 18, 65, 0.9);
-    list-style-type: disc;
-    font-style: italic;
-    margin-left: 1.2rem;
-  }
+.notice {
+  color: rgba(205, 18, 65, 0.9);
+  list-style-type: disc;
+  font-style: italic;
+  margin-left: 1.2rem;
+}
 
-  #email, #password, #account_firstname,
-  #account_lastname, #account_email,
-  #account_password {
-    color: black;
-    background-color: white;
-    width: 250px;
-    height: 40px;
-  }
+#email, #password, #account_firstname,
+#account_lastname, #account_email,
+#account_password {
+  color: black;
+  background-color: white;
+  width: 250px;
+  height: 40px;
+}
 
-  .password-field, .field{
-    margin: .5rem 0;
-  }
+.password-field, .field{
+  margin: .5rem 0;
+}
 
   .form {
     color: white;
@@ -221,9 +221,16 @@ nav ul li a {
     margin-top: 1.5rem;
   }
 
+.form input:required:invalid, input:focus:invalid {
+  border-right: solid 8px red;
+}
+
+.form input:required:valid {
+  border-right: solid 8px skyblue;
+}
+
 footer {
-  color: rgba(41, 19, 121, 0.9);
-  
+color: rgba(41, 19, 121, 0.9); 
 }
 
 
