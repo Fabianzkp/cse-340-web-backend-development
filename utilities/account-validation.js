@@ -1,11 +1,12 @@
 const utilities = require("../utilities/")
+const accountModel = require("../models/account-model")
 const { body, validationResult } = require("express-validator")
 const validate = {}
 
 /*  **********************************
   *  Registration Data Validation Rules
   * ********************************* */
-validate.registationRules = () => {
+validate.registrationRules = () => {
     return [
       // firstname is required and must be string
       body("account_firstname")
@@ -23,14 +24,19 @@ validate.registationRules = () => {
         .isLength({ min: 2 })
         .withMessage("Please provide a last name."), // on error this message is sent.
   
-      // valid email is required and cannot already exist in the DB
-      body("account_email")
-      .trim()
-      .escape()
-      .notEmpty()
-      .isEmail()
-      .normalizeEmail() // refer to validator.js docs
-      .withMessage("A valid email is required."),
+     // valid email is required and cannot already exist in the database
+    body("account_email")
+    .trim()
+    .isEmail()
+    .normalizeEmail() // refer to validator.js docs
+    .withMessage("A valid email is required.")
+.custom(async (account_email) => {
+  const emailExists = await accountModel.checkExistingEmail(account_email)
+  if (emailExists){
+    throw new Error("Email exists. Please log in or use different email")
+  }
+}),
+
   
       // password is required and must be strong password
       body("account_password")
@@ -46,7 +52,7 @@ validate.registationRules = () => {
         .withMessage("Password does not meet requirements."),
     ]
   }
-  
+
 
   /* ******************************
  * Check data and return errors or continue to registration
@@ -69,5 +75,43 @@ validate.checkRegData = async (req, res, next) => {
     }
     next()
   }
-  
-  module.exports = validate
+
+/* *******************************
+ *  Login Data Validation Rules
+ * ******************************* */
+validate.loginRules = () => {
+  return [
+      body("email")
+          .trim()
+          .isEmail()
+          .normalizeEmail()
+          .withMessage("Please enter a valid email address."),
+      body("password")
+          .trim()
+          .notEmpty()
+          .isLength({ min: 12 })
+          .withMessage(
+              "Password must be at least 12 characters long and include upper and lowercase letters, a number, and a special character."
+          ),
+  ];
+};
+
+/* ************************************
+* Check data and return errors or proceed to login
+* *********************************** */
+validate.checkLoginData = async (req, res, next) => {
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+      let nav = await utilities.getNav();
+      res.render("account/login", {
+          errors,
+          title: "Login",
+          nav,
+          account_email: req.body.email,
+      });
+      return;
+  }
+  next();
+}
+
+module.exports = validate
