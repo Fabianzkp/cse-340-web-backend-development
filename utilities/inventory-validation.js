@@ -87,37 +87,7 @@ validate.addInventoryRules = () => {
   
   /* ***************************
    * Check Add Inventory Validation and Return Errors or Continue
-   * *************************** */
-//   validate.checkAddInventoryData = async (req, res, next) => {
-//     const errors = validationResult(req);
-  
-//     if (!errors.isEmpty()) {
-//       const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_price, inv_image, inv_thumbnail, inv_miles, inv_color } = req.body;
-//       const nav = await utilities.getNav();
-//       const inventories = await invModel.getClassifications();
-  
-//       res.status(400).render("inventory/addInventory", {
-//         title: "Add Inventory",
-//         nav,
-//         inventories: inventories.rows,
-//         errors: errors.array(),
-//         classification_id,
-//         inv_make,
-//         inv_model,
-//         inv_year,
-//         inv_description,
-//         inv_price,
-//         inv_image,
-//         inv_thumbnail,
-//         inv_miles,
-//         inv_color,
-//       });
-//       return;
-//     }
-  
-//     next();
-//   };
-  
+   * *************************** */  
 
 validate.checkAddInventoryData = async (req, res, next) => {
     const {classication_id, inv_make, inv_model,

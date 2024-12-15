@@ -108,7 +108,7 @@ invCont.buildAddInventoryItem = async function (req, res, next) {
   let nav = await utilities.getNav()
  
   if (addInventory) {
-    req.flash("notice", `${classification_name} was successfully added.`)
+    req.flash("notice", "was successfully added.")
     res.redirect("inventory/vehicleManagement", {
       title: "Vehicle Management",
       nav,
