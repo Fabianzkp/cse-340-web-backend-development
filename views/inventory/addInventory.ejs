@@ -17,15 +17,8 @@
   
 <p>PLEASE NOTE: ALL FIELDS ARE REQUIRED</p>
 <form action="/inv/addInventory" method="POST" class="form">
-    <label for="classification_id">Classification</label><br>
-    <select id="classification_id" name="classification_id" required>
-        <option value="" disabled selected>Choose a Classification</option>
-        <% classifications.forEach(classification => { %>
-            <option value="<%= classification.classification_id %>">
-                <%= classification.classification_name %>
-            </option>
-        <% }) %>
-    </select><br>
+   <label for="classification_id">Classification</label><br>
+<%- classificationList %> <br>
 
     <label for="inv_make">Make</label><br>
     <input type="text" id="inv_make" name="inv_make" placeholder="Enter Make" required><br>
