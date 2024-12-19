@@ -102,32 +102,44 @@ invCont.buildAddInventory = async function (req, res, next) {
  *  Add inventory to database
  * ************************** */
 invCont.buildAddInventoryItem = async function (req, res, next) {
-  const {classification_id, inv_make, inv_model, inv_year, inv_description, inv_price,
-    inv_image, inv_thumbnail, inv_miles, inv_color,} = req.body;
+  const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_price, 
+          inv_image, inv_thumbnail, inv_miles, inv_color,} = req.body;
+
+  try {
     const addInventory = await invModel.addInventory(classification_id, inv_make, inv_model,
       inv_year, inv_description, inv_price,
-    inv_image, inv_thumbnail, inv_miles, inv_color)
-  let nav = await utilities.getNav()
- 
-  if (addInventory) {
-    req.flash("notice", "was successfully added.")
+      inv_image, inv_thumbnail, inv_miles, inv_color);
+
+    const classifications = await invModel.getClassifications();
+    const classificationList = await utilities.buildClassificationList();
+    let nav = await utilities.getNav();
+
+    req.flash("notice", "Inventory was successfully added.");
     res.redirect("inventory/vehicleManagement", {
       title: "Vehicle Management",
       nav,
       errors: null,
       classification_id, inv_make, inv_model, inv_year, inv_description, inv_price,
-    inv_image, inv_thumbnail, inv_miles, inv_color,
-    })
-  } else {
-    req.flash ("notice", "Sorry inventory could not be added.")
-    res.status(501).render("inventory/addInventory",{
-    title: "Add Inventory",
-    nav, 
-    errors: null,
-    classification_id, inv_make, inv_model, inv_year, inv_description, inv_price,
-    inv_image, inv_thumbnail, inv_miles, inv_color,
-    })
+      inv_image, inv_thumbnail, inv_miles, inv_color,
+      classificationList, 
+    });
+
+  } catch (error) { 
+    console.error("Error adding inventory:", error); 
+    let nav = await utilities.getNav();
+    const classifications = await invModel.getClassifications();
+    const classificationList = await utilities.buildClassificationList();
+
+    req.flash("notice", "Sorry, inventory could not be added. " + error.message); // Display error message
+    res.status(501).render("inventory/addInventory", {
+      title: "Add Inventory",
+      nav, 
+      classifications,
+      classificationList,
+      errors: null, 
+      classification_id, inv_make, inv_model, inv_year, inv_description, inv_price,
+      inv_image, inv_thumbnail, inv_miles, inv_color,
+    });
   }
 }
-
 module.exports = invCont;
