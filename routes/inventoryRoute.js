@@ -24,4 +24,7 @@ router.get("/addInventory", utilities.handleErrors(invController.buildAddInvento
 // Handle the form submission for adding inventory
 router.post("/addInventory", datavalidate.addInventoryRules(), datavalidate.checkAddInventoryData, utilities.handleErrors(invController.buildAddInventoryItem))
 
+//new route 
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
 module.exports = router;
