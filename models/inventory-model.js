@@ -59,6 +59,7 @@ async function addClassificationName (classification_name) {
  *  Add new inventory item
  * ************************** */
 async function addInventory(
+  classification_id,
   inv_make,
   inv_model,
   inv_year,
@@ -67,19 +68,20 @@ async function addInventory(
   inv_image,
   inv_thumbnail,
   inv_miles,
-  inv_color,
-  classification_id
+  inv_color
+  
 ) {
   try {
     const sql = `
-      INSERT INTO inventory (
+      INSERT INTO inventory (classification_id,
         inv_make, inv_model, inv_year, inv_description,
-        inv_price, inv_image, inv_thumbnail, inv_miles, inv_color, classification_id
+        inv_price, inv_image, inv_thumbnail, inv_miles, inv_color 
       ) 
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
       RETURNING *
     `;
     const values = [
+      classification_id,
       inv_make,
       inv_model,
       inv_year,
@@ -88,11 +90,11 @@ async function addInventory(
       inv_image,
       inv_thumbnail,
       inv_miles,
-      inv_color,
-      classification_id
+      inv_color
+      
     ];
 
-    console.log("SQL Query: ", sql, "Values: ", values); // Debugging line
+    console.log("SQL Query: ", sql, "Values: ", values); 
 
     const result = await pool.query(sql, values);
     return result.rows[0]; // Return the inserted inventory item

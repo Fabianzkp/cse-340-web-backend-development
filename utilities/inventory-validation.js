@@ -55,27 +55,28 @@ validate.addInventoryRules = () => {
       .isLength({ min: 3 })
       .withMessage("Model must be at least 3 characters long."),
     body("inv_year")
-      .isInt({ min: 1900, max: new Date().getFullYear() })
+      .isInt({ min: 1900, max: 2100 })
       .withMessage("Enter a valid year."),
-      body("inv_description")
-      .trim()
-      .escape()
-      .notEmpty()
-      .withMessage("Vehicle description is required."),
+
+      body("inv_description")      
+      .trim()      
+      .escape()      
+      .isLength({ min: 10 })      
+      .withMessage("Enter a vehicle description"),
+      
     body("inv_price")
       .isFloat({ min: 0 })
       .withMessage("Enter a valid price."),
-      body("inv_image")
-      .optional()
-      .trim()
-      .isLength({ min: 10 }) 
-      .withMessage("Image path must be at least 10 characters long."),
-    
+    body("inv_image")
+    .trim()
+    .notEmpty()
+    .withMessage("Image URL is required."),
+
     body("inv_thumbnail")
-      .optional()
-      .trim()
-      .isLength({ min: 10 }) 
-      .withMessage("Thumbnail path must be at least 10 characters long."),
+    .trim()
+    .notEmpty()
+    .withMessage("Thumbnail URL is required."),
+
     body("inv_miles")
       .optional()
       .isInt({ min: 0 })

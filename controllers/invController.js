@@ -111,17 +111,17 @@ invCont.buildAddInventoryItem = async function (req, res, next) {
       inv_image, inv_thumbnail, inv_miles, inv_color);
 
     const classifications = await invModel.getClassifications();
-    const classificationList = await utilities.buildClassificationList();
+    const classificationList = await utilities.buildClassificationList(classifications);
     let nav = await utilities.getNav();
 
     req.flash("notice", "Inventory was successfully added.");
-    res.redirect("inventory/vehicleManagement", {
+    res.render("inventory/vehicleManagement", {
       title: "Vehicle Management",
       nav,
       errors: null,
       classification_id, inv_make, inv_model, inv_year, inv_description, inv_price,
       inv_image, inv_thumbnail, inv_miles, inv_color,
-      classificationList, 
+      classificationList,
     });
 
   } catch (error) { 
