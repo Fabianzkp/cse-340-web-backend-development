@@ -2,6 +2,8 @@
 const utilities = require("../utilities/");
 const accountModel = require("../models/account-model");
 const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 /* ****************************************
  *  Deliver login view
@@ -72,34 +74,72 @@ async function registerAccount(req, res) {
 }
 
 /* ****************************************
- *  Process Login
- * *************************************** */
-async function loginAccount(req, res) {
-  const { email, password } = req.body;
+ *  Process login request
+ * ************************************ */
+async function accountLogin(req, res) {
+  let nav = await utilities.getNav();
+  const { account_email, account_password } = req.body;
+
+  // Fetch user by email
+  const accountData = await accountModel.getAccountByEmail(account_email);
+  if (!accountData) {
+    req.flash("notice", "Please check your credentials and try again.");
+    return res.status(400).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+      account_email: account_email,  // Pass the entered email back
+    });
+  }
+
+  // Compare hashed password
   try {
-    const user = await accountModel.getUserByEmail(email);
-    if (!user) {
-      req.flash("notice", "Invalid email or password.");
-      return res.redirect("/account/login");
-    }
+    const isPasswordValid = await bcrypt.compare(account_password, accountData.account_password);
+    if (isPasswordValid) {
+      delete accountData.account_password;
 
-    // Temporary plain text password check
-    if (password !== user.account_password) {
-      req.flash("notice", "Invalid email or password.");
-      return res.redirect("/account/login");
-    }
+      // Create JWT token
+      const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 });
+      if (process.env.NODE_ENV === 'development') {
+        res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 });
+      } else {
+        res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 });
+      }
 
-    // Successful login
-    req.session.user = {
-      id: user.account_id,
-      name: `${user.account_firstname} ${user.account_lastname}`,
-    };
-    res.redirect("/vehicleManagement");
-  } catch (err) {
-    console.error(err.message);
-    req.flash("notice", "An error occurred. Please try again later.");
-    res.redirect("/account/login");
+      return res.redirect("./account-management");
+    } else {
+      req.flash("notice", "Please check your credentials and try again.");
+      return res.status(400).render("account/login", {
+        title: "Login",
+        nav,
+        errors: null,
+        account_email: account_email,  // Pass the entered email back
+      });
+    }
+  } catch (error) {
+    console.log('Error during login:', error);
+    req.flash("notice", "An error occurred. Please try again.");
+    return res.status(500).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+      account_email: account_email,  // Pass the entered email back
+    });
   }
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, loginAccount };
+/* ****************************************
+ *  Deliver login view
+ * *************************************** */
+async function buildAccountManagement(req, res, next) {
+  let nav = await utilities.getNav();
+  
+  res.render("account/account-management", {
+    errors: null,
+    title: "Account Management",
+    nav,
+  });
+}
+
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement };

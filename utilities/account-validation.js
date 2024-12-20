@@ -81,12 +81,12 @@ validate.checkRegData = async (req, res, next) => {
  * ******************************* */
 validate.loginRules = () => {
   return [
-      body("email")
+      body("account_email")
           .trim()
           .isEmail()
           .normalizeEmail()
           .withMessage("Please enter a valid email address."),
-      body("password")
+      body("account_password")
           .trim()
           .notEmpty()
           .isLength({ min: 12 })
